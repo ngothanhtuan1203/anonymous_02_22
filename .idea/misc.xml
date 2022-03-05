@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/divider.xml" value="0.25052083333333336" />
+        <entry key="app/src/main/res/drawable/rounded_yellow_bg.xml" value="0.10052083333333334" />
+        <entry key="app/src/main/res/layout/activity_demo.xml" value="0.18761061946902655" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.49895833333333334" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.2942708333333333" />
+        <entry key="app/src/main/res/layout/fragment_currency_list.xml" value="0.2911458333333333" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.49895833333333334" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2942708333333333" />
+        <entry key="app/src/main/res/layout/progress_dialog.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/row_crypto_news_item.xml" value="0.5" />
       </map>
     </option>
   </component>

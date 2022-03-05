@@ -3,6 +3,7 @@
     package="com.android.anonymous_02_22">
 
     <application
+        android:name=".di.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anonymous_02_22">
         <activity
-            android:name=".DemoActivity"
+            android:name=".ui.DemoActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Anonymous_02_22.NoActionBar">
