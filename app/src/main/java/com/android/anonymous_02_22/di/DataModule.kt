@@ -13,7 +13,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.anspace.mindfulness.data.local.database.ASADatabase
+import com.android.anonymous_02_22.data.local.database.ASADatabase
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
