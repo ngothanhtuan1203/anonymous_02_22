@@ -1,6 +1,5 @@
 package com.android.anonymous_02_22.data.remote
 
-import com.android.anonymous_02_22.data.remote.respond.ModelFollow
 import com.android.anonymous_02_22.data.remote.respond.ModelSearch
 import com.android.anonymous_02_22.data.remote.respond.ModelUser
 import retrofit2.http.GET
@@ -18,15 +17,5 @@ interface ApiServices {
 
         @Query("q") username: String?
     ): ModelSearch?
-
-    @GET("users/{username}/followers")
-    suspend fun followersUser(
-        @Path("username") username: String?
-    ): List<ModelFollow?>?
-
-    @GET("users/{username}/following")
-    suspend fun followingUser(
-        @Path("username") username: String?
-    ): List<ModelFollow?>?
 
 }
