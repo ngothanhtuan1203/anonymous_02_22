@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.anonymous_02_22.domain.usercase.BaseUseCase
-import com.android.anonymous_02_22.domain.usercase.CryptoInfoUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

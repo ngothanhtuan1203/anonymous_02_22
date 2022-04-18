@@ -10,11 +10,11 @@ import com.android.anonymous_02_22.BR
 import com.android.anonymous_02_22.R
 import com.android.anonymous_02_22.databinding.RowItemUsersBinding
 import com.android.anonymous_02_22.domain.entities.FoundUser
-import com.android.anonymous_02_22.ui.MainViewModel
 import com.android.anonymous_02_22.ui.base.BaseRecyclerAdapter
-import java.util.*
+import com.android.anonymous_02_22.ui.fragment.UserListViewModel
+import com.android.anonymous_02_22.utility.JsonUtil
 
-class FoundUserAdapter(private val mainViewModel: MainViewModel) :
+class FoundUserAdapter(private val mainViewModel: UserListViewModel) :
     BaseRecyclerAdapter<FoundUser, RowItemUsersBinding>(object :
         DiffUtil.ItemCallback<FoundUser>() {
         override fun areItemsTheSame(oldItem: FoundUser, newItem: FoundUser): Boolean {
@@ -30,8 +30,8 @@ class FoundUserAdapter(private val mainViewModel: MainViewModel) :
 
     lateinit var viewBinding: RowItemUsersBinding
 
-    private fun setItemSelected(position: Int, euid: String) {
-        mainViewModel.setItemSelect(position, euid)
+    private fun setItemSelected(position: Int, data: String) {
+        mainViewModel.setItemSelect(position, data)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -41,7 +41,9 @@ class FoundUserAdapter(private val mainViewModel: MainViewModel) :
         viewBinding.apply {
 
             root.setOnClickListener {
-                setItemSelected(position, item.url?:"")
+
+                val itemData = JsonUtil.toJsonString(item)
+                setItemSelected(position, itemData)
             }
 
             imageUser.load(item.avatarUrl) {

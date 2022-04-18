@@ -11,7 +11,7 @@ import retrofit2.http.Query
 interface ApiServices {
 
     @GET("users/{username}")
-    suspend fun detailUser(@Path("username") username: String?): ModelUser?
+    suspend fun detailUser(@Path("username") username: String?): ModelUser
 
     @GET("/search/users")
     suspend fun searchUser(

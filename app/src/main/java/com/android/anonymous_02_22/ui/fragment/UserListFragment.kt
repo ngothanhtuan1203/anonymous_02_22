@@ -1,41 +1,55 @@
-package com.android.anonymous_02_22.ui
+package com.android.anonymous_02_22.ui.fragment
 
+import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.android.anonymous_02_22.R
-import com.android.anonymous_02_22.databinding.ActivityMainBinding
+import com.android.anonymous_02_22.databinding.FragmentUserListBinding
 import com.android.anonymous_02_22.ui.adapter.FoundUserAdapter
-import com.android.anonymous_02_22.ui.base.BaseActivity
+import com.android.anonymous_02_22.ui.base.BaseFragment
+import com.android.anonymous_02_22.utility.Constant.USER_DETAIL
 import com.android.anonymous_02_22.utility.setupLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
+class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding>() {
 
-    override val viewModel: MainViewModel by viewModels()
-    override val layoutId: Int = R.layout.activity_main
+    override val viewModel: UserListViewModel by viewModels()
+    override val layoutId: Int = R.layout.fragment_user_list
     private val foundUserAdapter: FoundUserAdapter by lazy { FoundUserAdapter(viewModel) }
     override fun initObserver() {
         super.initObserver()
         viewModel.apply {
-            itemList.observe(this@MainActivity) {
+            itemList.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
                     foundUserAdapter.submitList(it)
+                }
+            }
+            itemSelectedData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    val bundle = Bundle()
+                    bundle.putString(USER_DETAIL, it)
+                    findNavController().navigate(R.id.action_to_detail, bundle)
+                    viewModel.resetData()
                 }
             }
         }
 
     }
 
-    override fun setBindingVariable(viewBinding: ActivityMainBinding) {
+    override fun setBindingVariable(viewBinding: FragmentUserListBinding) {
         viewBinding.apply {
+
+            imageClear.visibility = View.INVISIBLE
+
             rvListUser.apply {
                 setupLayout(RecyclerView.VERTICAL)
                 adapter = foundUserAdapter
@@ -49,12 +63,20 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                             imageClear.visibility = View.VISIBLE
                             viewModel.searchUsers(strUsername)
                             val inputMethodManager = v.context
-                                .getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                                .getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
                             inputMethodManager.hideSoftInputFromWindow(v.windowToken, 0)
                             return@setOnEditorActionListener true
                         }
                     }
                     false
+                }
+
+                searchUser.doAfterTextChanged {
+                    if (it?.isEmpty() == true) {
+                        imageClear.visibility = View.INVISIBLE
+                    } else {
+                        imageClear.visibility = View.VISIBLE
+                    }
                 }
 
                 imageClear.setOnClickListener {
@@ -64,4 +86,5 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
         }
     }
+
 }

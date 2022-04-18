@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/user_list_nav_item">
+
+    <fragment
+        android:id="@+id/user_list_nav_item"
+        android:name="com.android.anonymous_02_22.ui.fragment.UserListFragment"
+        android:label="GitUserListFragment"
+        tools:layout="@layout/fragment_user_list">
+
+        <action
+            android:id="@+id/action_to_detail"
+            app:destination="@id/user_detail_nav_item" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/user_detail_nav_item"
+        android:name="com.android.anonymous_02_22.ui.fragment.UserDetailFragment"
+        android:label="GitUserDetail"
+        tools:layout="@layout/fragment_user_detail">
+
+    </fragment>
+
+</navigation>

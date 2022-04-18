@@ -8,7 +8,7 @@ import javax.inject.Inject
 class RemoteDataSourceImpl @Inject constructor(
     private val apiService: ApiServices
 ) : RemoteDataSource {
-    override suspend fun detailUser(username: String?): ModelUser? {
+    override suspend fun detailUser(username: String?): ModelUser {
        return apiService.detailUser(username)
     }
 

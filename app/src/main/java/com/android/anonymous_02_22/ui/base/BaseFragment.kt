@@ -24,7 +24,7 @@ abstract class BaseFragment<ViewModel : BaseViewModel, ViewBinding : ViewDataBin
     abstract val viewModel: ViewModel
 
     protected lateinit var viewBinding: ViewBinding
-//    var progressDialog : Dialog? = null
+    private lateinit var progressDialog : Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +43,7 @@ abstract class BaseFragment<ViewModel : BaseViewModel, ViewBinding : ViewDataBin
             root.isClickable = true
             lifecycleOwner = this@BaseFragment
             executePendingBindings()
-//            progressDialog = TNProgressDialog.progressDialog(requireContext())
+            progressDialog = TNProgressDialog.progressDialog(requireContext())
 
         }
 
@@ -72,11 +72,11 @@ abstract class BaseFragment<ViewModel : BaseViewModel, ViewBinding : ViewDataBin
         try {
             requireActivity().runOnUiThread {
                 if (show) {
-//                    progressDialog!!.show()
+                    progressDialog.show()
                 } else {
-//                    if (progressDialog != null && progressDialog!!.isShowing) {
-//                        progressDialog!!.dismiss()
-//                    }
+                    if (progressDialog.isShowing) {
+                        progressDialog.dismiss()
+                    }
 
                 }
 

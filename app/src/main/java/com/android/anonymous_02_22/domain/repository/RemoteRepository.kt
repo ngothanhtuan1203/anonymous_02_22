@@ -4,6 +4,7 @@ import com.android.anonymous_02_22.data.local.LocalDataSource
 import com.android.anonymous_02_22.data.local.database.entities.Cryptic
 import com.android.anonymous_02_22.data.remote.RemoteDataSource
 import com.android.anonymous_02_22.data.remote.respond.ModelSearchData
+import com.android.anonymous_02_22.data.remote.respond.ModelUser
 import com.android.anonymous_02_22.domain.entities.CryptoInfo
 import com.android.anonymous_02_22.domain.entities.GitProfile
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +16,13 @@ class RemoteRepository @Inject constructor(private val remoteDataSource: RemoteD
     suspend fun searchUsers(keyWord:String): List<ModelSearchData> {
         return withContext(Dispatchers.IO) {
             remoteDataSource.searchUser(keyWord)?.modelSearchData ?: emptyList<ModelSearchData>()
+        }
+    }
+
+
+    suspend fun fetchUserDetail(userName:String): ModelUser {
+        return withContext(Dispatchers.IO) {
+            remoteDataSource.detailUser(userName)
         }
     }
 }
