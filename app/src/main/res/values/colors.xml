@@ -9,4 +9,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="app_yellow">#E49F15</color>
     <color name="grey">#A9A9A9</color>
+
+    <color name="colorPrimary">#485753</color>
+    <color name="colorPrimaryDark">#3A3E3D</color>
+    <color name="colorAccent">#f7890b</color>
+    <color name="colorSecondary">#699b2c</color>
 </resources>

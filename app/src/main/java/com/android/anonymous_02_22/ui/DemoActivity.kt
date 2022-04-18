@@ -20,19 +20,20 @@ class DemoActivity : BaseActivity<DemoViewModel, ActivityDemoBinding>() {
     override fun initObserver() {
         super.initObserver()
         viewModel.apply {
-            hasDbData.observe(this@DemoActivity, {
+            hasDbData.observe(this@DemoActivity) {
                 if (it) {
                     viewBinding.loadButton.isEnabled = true
                 }
-            })
+            }
 
-            itemSelectedLable.observe(this@DemoActivity,{
+            itemSelectedLable.observe(this@DemoActivity) {
                 if (it != null) {
                     runOnUiThread {
-                        Toast.makeText(this@DemoActivity,"Item selected:$it",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@DemoActivity, "Item selected:$it", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
-            })
+            }
         }
     }
 

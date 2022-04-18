@@ -2,9 +2,10 @@ package com.android.anonymous_02_22.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.android.anonymous_02_22.domain.usercase.BaseUseCase
 import com.android.anonymous_02_22.domain.usercase.CryptoInfoUseCase
 
-abstract class BaseRecyclerViewModel<Item> constructor(cryptoInfoUseCase: CryptoInfoUseCase) : BaseViewModel(cryptoInfoUseCase) {
+abstract class BaseRecyclerViewModel<Item> constructor(baseUseCase: BaseUseCase) : BaseViewModel(baseUseCase) {
     protected open val initialPage = 1
     abstract fun load(page: Int = initialPage)
     val isEndReached = MutableLiveData(false)

@@ -3,12 +3,13 @@ package com.android.anonymous_02_22.ui.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.anonymous_02_22.domain.usercase.BaseUseCase
 import com.android.anonymous_02_22.domain.usercase.CryptoInfoUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 open class BaseViewModel @Inject constructor(
-   private val cryptoInfoUseCase: CryptoInfoUseCase
+   private val baseUseCase: BaseUseCase
 ) : ViewModel() {
     protected var _isLoading = false
     val isLoading = MutableLiveData<Boolean>(_isLoading)

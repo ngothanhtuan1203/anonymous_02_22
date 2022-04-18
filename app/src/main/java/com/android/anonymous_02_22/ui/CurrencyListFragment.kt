@@ -20,7 +20,8 @@ class CurrencyListFragment : BaseFragment<DemoViewModel, FragmentCurrencyListBin
 
     override fun initObserver() {
         viewModel.apply {
-            itemList.observe(viewLifecycleOwner, { playlist ->
+            itemList.observe(viewLifecycleOwner
+            ) { playlist ->
                 if (playlist != null) {
                     crypticAdapter.submitList(playlist) {
                         crypticAdapter.notifyItemRangeChanged(0, playlist.count())
@@ -28,7 +29,6 @@ class CurrencyListFragment : BaseFragment<DemoViewModel, FragmentCurrencyListBin
 
                 }
             }
-            )
         }
 
         super.initObserver()
