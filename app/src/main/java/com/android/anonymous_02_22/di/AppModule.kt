@@ -25,4 +25,15 @@ object AppModule {
     fun provideDetailUserInteraction(detailUserInteraction: DetailUserInteraction): DetailUserUseCase =
         detailUserInteraction
 
+
+    @Provides
+    @Singleton
+    fun provideCountryInteraction(countryInteraction: CountryInteraction): CountryUseCase =
+        countryInteraction
+
+    @Provides
+    @Singleton
+    fun provideCoinInteraction(countryInteraction: HakoCoinInteraction): HakoCoinUseCase =
+        countryInteraction
+
 }

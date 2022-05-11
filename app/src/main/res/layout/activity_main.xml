@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/git_user_nav_graph"
+            app:navGraph="@navigation/coin_nav_graph"
             tools:ignore="FragmentTagUsage" />
     </LinearLayout>
 </layout>

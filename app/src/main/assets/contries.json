@@ -1,0 +1,12 @@
+[
+  {
+    "id": "SG",
+    "name": "Singapore",
+    "symbol": "sg_flag.png"
+  },
+  {
+    "id": "TL",
+    "name": "Thailand",
+    "symbol": "tl_flag.png"
+  }
+]

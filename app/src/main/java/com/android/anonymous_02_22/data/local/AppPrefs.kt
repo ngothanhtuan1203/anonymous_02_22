@@ -14,4 +14,13 @@ class AppPrefs(private val gson: Gson, private val context: Context) {
             .bufferedReader()
             .use(BufferedReader::readText)
     }
+
+    fun getCountries(): String {
+        val fileName = "contries.json"
+        return context
+            .assets
+            .open(fileName)
+            .bufferedReader()
+            .use(BufferedReader::readText)
+    }
 }
