@@ -1,5 +1,6 @@
 package com.android.anonymous_02_22.ui.fragment
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.anonymous_02_22.domain.entities.CoinInfo
@@ -16,24 +17,40 @@ class CoinListViewModel @Inject constructor(
     private var _itemSelectedData = MutableLiveData<String?>()
     val itemSelectedData: LiveData<String?> = _itemSelectedData
 
+    var fullList: List<CoinInfo> = emptyList<CoinInfo>()
+
     fun setItemSelect(position: Int, data: String) {
         _itemSelectedData.postValue(data)
     }
 
     override fun load(page: Int) {
-        //TODO("Not yet implemented")
 
     }
     fun resetData() {
         _itemSelectedData.value = null
     }
 
-    fun getCoins() {
+    fun searchCoin(keyword: String) {
+        Log.d("TAG","keyword:$keyword")
         execute(true) {
-            val data= coinUseCase.fetchCoins()
-            itemList.value = data
+            if (keyword.isEmpty()) {
+                if (fullList.isEmpty()) {
+                    val data = coinUseCase.fetchCoins()
+                    fullList = data
+                }
+                itemList.value = fullList
+            } else {
+                val data = fullList.filter {
+                    it.name?.trim()?.lowercase()?.contains(keyword.trim().lowercase()) == true
+                            || it.base?.trim()?.lowercase()
+                        ?.contains(keyword.trim().lowercase()) == true
+                }
+                itemList.value = data
+            }
         }
     }
+
+
 
 
 }

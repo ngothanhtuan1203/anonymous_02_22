@@ -1,7 +1,13 @@
 package com.android.anonymous_02_22.ui.fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -51,15 +57,45 @@ class CoinListFragment : BaseFragment<CoinListViewModel, FragmentCoinListBinding
                 setupLayout(RecyclerView.VERTICAL)
                 adapter = foundUserAdapter
                 //method action search
+            }
 
-                imageClear.setOnClickListener {
-                    searchUser.setText("")
+            imageClear.setOnClickListener {
+                searchCoin.setText("")
+            }
+
+            searchCoin.setOnEditorActionListener { v: TextView, actionId: Int, event: KeyEvent? ->
+                val strSearchField = searchCoin.text.toString()
+
+                if (strSearchField.isEmpty()) {
+
+                    imageClear.visibility = View.INVISIBLE
+                    viewModel.searchCoin("")
+                } else {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                        imageClear.visibility = View.VISIBLE
+                        viewModel.searchCoin(strSearchField)
+                        val inputMethodManager = v.context
+                            .getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(v.windowToken, 0)
+                        return@setOnEditorActionListener true
+
+                    }
                 }
+                false
+            }
 
+            searchCoin.doAfterTextChanged {
+                if (it?.isEmpty() == true) {
+                    viewModel.searchCoin("")
+                    imageClear.visibility = View.INVISIBLE
+                } else {
+                    imageClear.visibility = View.VISIBLE
+                }
             }
 
 
-            viewModel.getCoins()
+            viewModel.searchCoin(searchCoin.text.toString())
         }
     }
 
